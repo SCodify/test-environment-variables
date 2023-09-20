@@ -7,7 +7,7 @@ jobs:
   bulid:
       runs-on: ubutnu-lastest
       steps:
-      - name: Ouput vars
+      - name: Output vars
         run: |
         echo "REPO_VAR1": ${{vars.REPO_VAR1}}
 
