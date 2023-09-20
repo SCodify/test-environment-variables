@@ -9,17 +9,14 @@ jobs:
     steps:
     - name: Output vars
       run: |
-        echo "REPO_VAR1: ${{ secrets.REPO_VAR1 }}"
-        echo "ENV_VAR1: ${{ secrets.ENV_VAR1 }}"
+        echo "REPO_VAR1: ${{ vars.REPO_VAR1 }}"
 
   using-environments:
     runs-on: ubuntu-latest
-    env:
-      REPO_VAR1: ${{ secrets.REPO_VAR1 }}
-      ENV_VAR1: ${{ secrets.ENV_VAR1 }}
+    environment:
+      name: DEV
 
     steps:
-    - name: Show Variables
+    - name: Output some more vars
       run: |
-        echo "REPO_VAR1: $REPO_VAR1"
-        echo "ENV_VAR1: $ENV_VAR1"
+        echo "ENV_VAR1: ${{ vars.ENV_VAR1 }}"
