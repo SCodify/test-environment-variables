@@ -4,19 +4,22 @@ on:
   workflow_dispatch
 
 jobs:
-  bulid:
-      runs-on: ubutnu-lastest
-      steps:
-      - name: Output vars
-        run: |
-        echo "REPO_VAR1": ${{vars.REPO_VAR1}}
-
-  using-environmets:
-    runs-on: ubuntu-lastest
-    environment:
-      name: DEV
-
-    steps: 
-    - name:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Output vars
       run: |
-      echo "ENV_VAR1: ${{vars.ENV_VAR1}}"
+        echo "REPO_VAR1: ${{ secrets.REPO_VAR1 }}"
+        echo "ENV_VAR1: ${{ secrets.ENV_VAR1 }}"
+
+  using-environments:
+    runs-on: ubuntu-latest
+    env:
+      REPO_VAR1: ${{ secrets.REPO_VAR1 }}
+      ENV_VAR1: ${{ secrets.ENV_VAR1 }}
+
+    steps:
+    - name: Show Variables
+      run: |
+        echo "REPO_VAR1: $REPO_VAR1"
+        echo "ENV_VAR1: $ENV_VAR1"
